@@ -21,12 +21,12 @@ class Reservation{
             $this->client->setStatut(false);
             $this->hotel->setNbReservation($this->total+1);
             $this->client->setNbReservation($this->total+1);
-            $this->hotel->setNbChambreDis();
+            $this->hotel->setNbChambreDispo();
             $this->hotel->toArray($this);
             $this->client->toArray($this);
         }
         else
-            echo "<h2>Echec reservation chambre ". $chambre->getNum() ."</h2><p>Motif : La chambre est deja reservee.</p>"; 
+            echo "<h2>Echec reservation chambre ". $chambre->getNum() ." par " . $client->getNom() . $client->getPrenom() . "</h2><p>Motif : La chambre est deja reservee.</p>"; 
     }
 
     public function getHotel(){return $this->hotel;}

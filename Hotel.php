@@ -6,19 +6,21 @@ class Hotel
     private string $adresse;
     private int $nbChambreTot;
     private int $nbReservation = 0;
-    private int $nbChambreDis;
+    private int $nbChambreDispo;
     private bool $noReservation = true;
     private array $reservations = [];
     private array $chambres = [];
 
-
     public function __construct($nom, $ville, $adresse, $nbChambreTot)
     {
+        if(! is_string($ville)){
+            throw new Exception('$ville doit etre un nom de ville');
+        }
         $this->nom = $nom;
         $this->ville = $ville;
         $this->adresse = $adresse;
         $this->nbChambreTot = $nbChambreTot;
-        $this->nbChambreDis = $nbChambreTot;
+        $this->nbChambreDispo = $nbChambreTot;
     }
 
     // Getter
@@ -42,13 +44,9 @@ class Hotel
     {
         return $this->nbReservation;
     }
-    public function getNbChambreDis()
+    public function getNbChambreDispo()
     {
-        return $this->nbChambreDis;
-    }
-    public function getStatut()
-    {
-        return $this->statut;
+        return $this->nbChambreDispo;
     }
 
     // Setter
@@ -68,9 +66,9 @@ class Hotel
     {
         $this->nbReservation += $nbReservation;
     }
-    public function setNbChambreDis()
+    public function setNbChambreDispo()
     {
-        $this->nbChambreDis = $this->nbChambreTot - $this->nbReservation;
+        $this->nbChambreDispo = $this->nbChambreTot - $this->nbReservation;
     }
     public function setStatut($reservation)
     {
@@ -91,7 +89,7 @@ class Hotel
     {
         if (count($this->reservations) > 1) {
             usort($this->reservations, function ($a, $b) {
-                return strtotime($a->getReservationDebut()->format('d-m-Y')) - strtotime($b->getReservationDebut()->format('d-m-Y'));
+                return strtotime($a->getReservationDebut()->format('d-m-Y')) - strtotime($b->getReservationDebut()->format('d-m-Y')); // je transforme le DateTime en string avec format() 
             });
         }
     }
@@ -155,6 +153,6 @@ class Hotel
         <p>$this->adresse $this->ville</p>
         <p>Nombre de chambres : $this->nbChambreTot</p>
         <p>Nombre de chambres reserves : $this->nbReservation</p>
-        <p>Nombre de chambres dispo : $this->nbChambreDis</p></div>";
+        <p>Nombre de chambres dispo : $this->nbChambreDispo</p></div>";
     }
 }

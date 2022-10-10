@@ -28,7 +28,7 @@
     $chambre17 = new Chambre(17, 1, 300, $h1);
 
     $r1 = new Reservation($h1, $chambre17, $client2, "01-01-2021", "01-01-2021");
-    $r2 = new Reservation($h1, $chambre4, $client1, "11-03-2021", "11-03-2021");
+    $r2 = new Reservation($h1, $chambre17, $client1, "11-03-2021", "11-03-2021");
     $r3 = new Reservation($h1, $chambre3, $client1, "01-04-2021", "01-04-2021");
     $r4 = new Reservation($h1, $chambre5, $client1, "10-10-2022", "03-11-2022");
     echo $h1;

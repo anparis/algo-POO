@@ -18,6 +18,7 @@ class Chambre
             if ($this->prix >= 300) {
                 $this->wifi = true;
             }
+            
             $this->hotel->toHotel($this);
     }
 
@@ -66,11 +67,11 @@ class Chambre
         $this->wifi = $wifi;
     }
     public function setEtat($dispo)
-    { // a inclure dans methode reservation
+    {
         $this->etat = $dispo;
     }
 
-    public function Wifi()
+    public function Wifi() : string
     {
         $wifi = "";
         if($this->wifi)
@@ -79,7 +80,8 @@ class Chambre
             $wifi = "non";
         return $wifi;
     }
-    public function Etat()
+    
+    public function Etat() : string
     {
         $etat = "";
         if($this->etat)
